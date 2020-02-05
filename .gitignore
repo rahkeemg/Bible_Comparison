@@ -1,4 +1,4 @@
-# Exclude files in 
+# Exclude files and folders in directory
 .ipynb_checkpoints/
 data/*.json
 data/.ipynb_checkpoints/
