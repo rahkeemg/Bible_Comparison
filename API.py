@@ -22,15 +22,16 @@ class My_API:
         if url:
             self.url = url            
         
-    def run_query(self, query):
+    def run_query(self, query, verbose=False):
         self._query_string = My_API.build_query(self.url, query, self._key)
         self.resp = requests.get(self._query_string)
         try:
             data = self.resp.json()
         except:
-            print("---------------------------------------------------------------")
-            print("Error converting response to JSON format. Returning as a string")
-            print("---------------------------------------------------------------")
+            if verbose:
+                print("---------------------------------------------------------------")
+                print("Error converting response to JSON format. Returning as a string")
+                print("---------------------------------------------------------------")
             data = self.resp.text
         return data
 
