@@ -132,7 +132,7 @@ def generate_word_cloud(df=None, col='', stopwords=None,  img_width=800, img_hei
             comment_words = comment_words + words + ' '
 
     wordcloud = WordCloud(width = img_width, height = img_height, 
-                    background_color ='white', 
+                    background_color ='white',
                     stopwords = stopwords, 
                     min_font_size = 10).generate(comment_words)
 
