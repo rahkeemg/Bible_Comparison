@@ -13,6 +13,7 @@ from wordcloud import WordCloud
 def generate_div_container(list_of_elements=None, class_name=''):
     return html.Div(children=list_of_elements, className=class_name)
 
+
 def generate_data_table(df=None):
     return dash_table.DataTable(
         id='datatable-interactivity',
@@ -30,85 +31,93 @@ def generate_data_table(df=None):
         selected_columns=[],
         selected_rows=[],
         page_action="native",
-        page_current= 0,
-        page_size= 25,
+        page_current=0,
+        page_size=25,
         # virtualization=True
     )
 
+
 def generate_btstrp_table_header(list_of_headers):
-       
+
     return html.Thead([
         html.Tr([
             html.Th(col, scope='col') for col in list_of_headers]
-            )
+        )
     ])
 
+
 def generate_tbl_row(list_of_items=None):
-    
+
     size = len(list_of_items)
     lst = []
 
-    row_head = html.Th([ list_of_items[0] ], scope='row')
-    row_body = [ html.Td(list_of_items[i]) for i in range(1,size)]
+    row_head = html.Th([list_of_items[0]], scope='row')
+    row_body = [html.Td(list_of_items[i]) for i in range(1, size)]
 
     lst.append(row_head)
     lst += row_body
-    
+
     return html.Tr(children=lst)
 
+
 def generate_btsrp_table_body(df=None):
-   
-    rows = [ generate_tbl_row(df.iloc[i]) for i in range(0, df.shape[0]) ]
+
+    rows = [generate_tbl_row(df.iloc[i]) for i in range(0, df.shape[0])]
     return html.Tbody(children=rows)
-    
+
+
 def generate_btstrp_table(df, class_name='table', max_rows=10, id=''):
     return html.Table([
         generate_btstrp_table_header(df.columns),
         generate_btsrp_table_body(df=df)
     ], className=class_name, id=id)
 
+
 def generate_bar_graph(df=None, metric='', title='Vizualization', id='example-graph'):
     return dcc.Graph(
         id='example-graph',
         figure={
-            'data': [ 
-                {'x': [item[0]], 'y': [item[1]], 'type':'bar', 'name': item[0] } 
-                for item in df[metric].items() 
-            ], 
+            'data': [
+                {'x': [item[0]], 'y': [item[1]], 'type':'bar', 'name': item[0]}
+                for item in df[metric].items()
+            ],
             'layout': {'title': title}
         }
     )
 
 
 def generate_dropdown(list_of_options=None, label='Dropdown Label', id='', multi_flag=False):
-    opts = [ 
-            {'label': opt.title().replace('_',' '), 'value':opt} 
-            for opt in list_of_options
+    opts = [
+        {'label': opt.title().replace('_', ' '), 'value': opt}
+        for opt in list_of_options
     ]
 
     return dcc.Dropdown(
-        options = opts,
+        options=opts,
         value=opts[0]['value'],
         id=id,
         clearable=False,
         multi=multi_flag
     )
 
+
 def generate_radio_buttons(list_of_options=None, id='radio-options'):
 
-    opts = [ 
-        {'label': opt.title().replace('_',' '), 'value':opt} 
+    opts = [
+        {'label': opt.title().replace('_', ' '), 'value': opt}
         for opt in list_of_options
     ]
-    
+
     return dcc.RadioItems(
-        options = [{'label': option, 'value': option} for option in list_of_options],
+        options=[{'label': option, 'value': option}
+                 for option in list_of_options],
         value=opts[0]['value'],
         labelClassName='font-italic',
-        inputStyle={'display':'inline-block', 'margin-right': '5px'},
+        inputStyle={'display': 'inline-block', 'margin-right': '5px'},
         labelStyle={'display': 'inline-block', 'margin-right': '10px'},
         id=id
     )
+
 
 def display_wordcloud(img_path='', width=800, height=800, scl_factor=0.5, display_flag=False):
 
@@ -172,10 +181,11 @@ def display_wordcloud(img_path='', width=800, height=800, scl_factor=0.5, displa
 
     return fig.to_dict()
 
+
 def generate_button(children='SUBMIT', type='button', id='submit-button', class_name='btn btn-primary btn-block', n_clicks=0):
-    return html.Button( 
-        children=children, 
-        type=type, 
+    return html.Button(
+        children=children,
+        type=type,
         id=id,
         className=class_name,
         n_clicks=n_clicks)
