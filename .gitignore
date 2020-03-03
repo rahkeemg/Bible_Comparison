@@ -1,5 +1,6 @@
 # Exclude files and folders in directory
 .ipynb_checkpoints/
+.vscode/
 data/*.json
 data/.ipynb_checkpoints/
 __pycache__/

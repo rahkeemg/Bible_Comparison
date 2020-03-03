@@ -116,7 +116,7 @@ metrics = sum_df.columns
 
 list_of_books = df.book.unique()
 version_list = df.version.unique()
-stopwords = th.get_stop_words('../Bible_Comparison/resources/custom-stopwords.txt')
+stopwords = th.get_stop_words('/assets/resources/custom-stopwords.txt')
 
 ###########################
 ## Main Dash app layout ##
@@ -204,31 +204,14 @@ app.layout = html.Div([
 
 @app.callback(Output('tabs-content-inline', 'children'), 
                 [Input('tabs-styled-with-inline', 'value'), Input('metric-radio-options', 'value')])
-def render_content(tab, metric_options):
+def render_tab_content(tab, metric_options):
 
     dff = df.groupby(['version']).agg(tab)
     return html.Div([
         mhf.generate_bar_graph(df=dff, metric=metric_options, title=f'{metric_options.title()} {tab.title()}')
     ])
 
-    ## Original code for tab display ##
-    # if tab == 'sum':
-    #     return html.Div([
-    #         mhf.generate_bar_graph(df=sum_df, metric='char_count')
-    #     ])
-    # elif tab == 'mean':
-    #     return html.Div([
-    #         mhf.generate_bar_graph(df=mean_df, metric='char_count')
-    #     ])
-    # elif tab == 'median':
-    #     return html.Div([
-    #         mhf.generate_bar_graph(df=median_df, metric='char_count')
-    #     ])
-    # elif tab == 'tab-4':
-    #     return html.Div([
-    #         mhf.generate_bar_graph(df=sum_df, metric='char_count')
-    #     ])
-
+    
 @app.callback(Output('word-cloud-grph', 'figure'),
                 [Input('submit-button', 'n_clicks')],
                 [State('book-select', 'value'), State('version-select', 'value')]
