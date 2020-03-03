@@ -1,11 +1,10 @@
 import re
 import string
 import nltk
+from wordcloud import STOPWORDS, WordCloud
+from nltk import word_tokenize 
+from nltk.corpus import stopwords
 
-from nltk import word_tokenize
-from nltk.stem.wordnet import WordNetLemmatizer
-
-nltk.download('wordnet')
 
 def remove_nonalnum_lead_trail(s):
     try:
@@ -33,14 +32,35 @@ def remove_punct(word_list=None):
 #     print(punctuation_list)
     
     if word_list:
-#         updated_words = [remove_nonalnum_lead_trail(item) for item in list_of_words if item not in punctuation_list ]
-        
+#         updated_words = [remove_nonalnum_lead_trail(item) for item in list_of_words if item not in punctuation_list ]  
         for item in word_list:
             cleaned_word = remove_nonalnum_lead_trail(item)
             if item not in punctuation_list and cleaned_word != None:
                 updated_word_list.append(cleaned_word)
                 
     return updated_word_list
+
+def get_stop_words(file_path=''):
+    
+    complete_stoplist = list(STOPWORDS) + list(stopwords.words('english'))
+    
+    try:
+        if file_path:
+            with open(file_path, 'r') as f:
+                eliz_stopwords = f.readlines()
+                
+            eliz_stopwords = [word.strip() for word in eliz_stopwords]
+            complete_stoplist += eliz_stopwords
+        
+        return set(complete_stoplist)
+
+    except:
+        print('#######################')
+        print('Issue reading the file.')
+        print('#######################')
+        
+        return set(complete_stoplist)
+
 
 def remove_stop_words(list_of_words=None):
     pass
@@ -97,3 +117,23 @@ def tokenize_verse(verse):
     list_of_words = word_tokenize(verse.strip())
     tokenized_verse = remove_punct(list_of_words)
     return tokenized_verse
+
+def generate_word_cloud(df=None, col='', stopwords=None,  img_width=800, img_height=800):
+    """
+        This function takes text and turns it into a word cloud.
+        Returns a Pillow image representation of the word cloud
+    """
+    comment_words = ' '
+
+    for val in df[col]:
+        tokens = [token for token in tokenize_verse(val)]
+
+        for words in tokens:
+            comment_words = comment_words + words + ' '
+
+    wordcloud = WordCloud(width = img_width, height = img_height, 
+                    background_color ='white', 
+                    stopwords = stopwords, 
+                    min_font_size = 10).generate(comment_words)
+
+    return wordcloud.to_image()
