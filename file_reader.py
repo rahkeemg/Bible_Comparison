@@ -29,9 +29,15 @@ def read_file(dir_path=''):
             chapter = ref.split()[-1].split(":")[0]
             verse = ref.split()[-1].split(":")[1]
 
+            if book == 'psalm':
+                book = 'psalms'
+            if book == 'song_of_solomon':
+                book = 'song_of_songs'
+
             content.append((version.lower(), book, chapter, verse, text))
 
-        df = pd.DataFrame(data=content, columns=['version', 'book', 'chapter', 'verse', 'text'])
+        df = pd.DataFrame(data=content, columns=[
+                          'version', 'book', 'chapter', 'verse', 'text'])
         list_of_df.append(df)
 
     df = pd.concat(list_of_df)

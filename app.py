@@ -4,7 +4,6 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_table
 import plotly.graph_objects as go
-import matplotlib.pyplot as plt
 import file_reader as fr
 import json
 import string
@@ -157,6 +156,7 @@ app.layout = html.Div([
 
             # Dropdown selections for books and versions
             html.Div([
+                html.H1('Interactive Wordcloud Generator'),
                 html.H4('Book'),
                 mhf.generate_dropdown(
                     list_of_options=list_of_books, id='book-select'),
@@ -174,10 +174,8 @@ app.layout = html.Div([
                 className='col-8',
                 id='word-cloud-div'
             )
-        ],
-            className='row')
-    ],
-        className='container-fluid'),
+        ], className='row')
+    ], className='container-fluid'),
 
     # Page divider
     html.Hr(),
