@@ -2,9 +2,9 @@
 
 The Bible is the best selling book of all times and continues to be a source for many pointing towards God. Originally written in Hebrew, Aramaic, and Greek, the Bible has been translated into over 600+ languages, with each respective language having its own respective variations and verisons.  
 
-In this project, we will be examinign a few English Translations of the Bible and using some natural language procesing (NLP) tools in attempt to see how some of these versions are similar and how they differ.
+In this project, we will be examining a few English Translations of the Bible and using some natural language procesing (NLP) tools in attempt to see how some of these versions are similar and how they differ.
 
-The goal of this project is not to declare which versions are better or worse than another, but simply to see how these versions relate to one another, using Python and some machine learning techniques to quantify and make comparisons.
+The goal of this project is not to declare which versions are better or worse than another, but simply to see how these versions relate to one another using Python and some machine learning techniques to quantify and make comparisons.
 
 ___________________________
 
