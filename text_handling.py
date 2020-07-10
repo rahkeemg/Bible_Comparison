@@ -5,6 +5,8 @@ from wordcloud import STOPWORDS, WordCloud
 from nltk import word_tokenize 
 from nltk.corpus import stopwords
 
+nltk.download('stopwords')
+nltk.download('punkt')
 
 def remove_nonalnum_lead_trail(s):
     try:
