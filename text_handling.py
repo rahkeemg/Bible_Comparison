@@ -53,15 +53,13 @@ def get_stop_words(file_path=''):
                 
             eliz_stopwords = [word.strip() for word in eliz_stopwords]
             complete_stoplist += eliz_stopwords
-        
-        return set(complete_stoplist)
 
     except:
         print('#######################')
         print('Issue reading the file.')
         print('#######################')
         
-        return set(complete_stoplist)
+    return set(complete_stoplist)
 
 
 def remove_stop_words(list_of_words=None):
