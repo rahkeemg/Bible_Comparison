@@ -171,12 +171,27 @@ app.layout = html.Div([
             # Dropdown selections for books and versions
             html.Div([
                 html.H1('Interactive Wordcloud Generator'),
-                html.H4('Book'),
-                mhf.generate_dropdown(
-                    list_of_options=list_of_books, id='book-select'),
-                html.H4('Version'),
-                mhf.generate_dropdown(
-                    list_of_options=version_list, id='version-select'),
+                # html.H4('Book'),
+                # mhf.generate_dropdown(
+                #     list_of_options=list_of_books, id='book-select'),
+                # html.H4('Version'),
+                # mhf.generate_dropdown(
+                #     list_of_options=version_list, id='version-select'),
+
+                dbc.FormGroup([
+                    dbc.Label("Book btstrp", html_for="book-select"),
+                    dcc.Dropdown(
+                        id='book-select',
+                        options=[{'label': opt.title().replace('_', ' '), 'value': opt}
+                                 for opt in list_of_books]
+                    ),
+                    dbc.Label("Version btstrp", html_for="dropdown-3"),
+                    dcc.Dropdown(
+                        id="version-select",
+                        options=[{'label': opt.title().replace('_', ' '), 'value': opt}
+                                 for opt in version_list]
+                    )
+                ]),
                 dbc.Button(children="Submit", id='submit-button-1',
                            color="primary", size="lg", block=True)
             ], className='col-sm'),
@@ -217,8 +232,8 @@ app.layout = html.Div([
 ], className='container')
 
 
-@app.callback(Output('tabs-content-inline', 'children'),
-              [Input('tabs-styled-with-inline', 'value'), Input('metric-radio-options', 'value')])
+@ app.callback(Output('tabs-content-inline', 'children'),
+               [Input('tabs-styled-with-inline', 'value'), Input('metric-radio-options', 'value')])
 def render_tab_content(tab, metric_options):
 
     dff = df.groupby(['version']).agg(tab)
@@ -228,7 +243,7 @@ def render_tab_content(tab, metric_options):
     ])
 
 
-@app.callback(
+@ app.callback(
     Output('word-cloud-grph', 'figure'),
     [Input('submit-button-1', 'n_clicks')],
     [State('book-select', 'value'), State('version-select', 'value')]
