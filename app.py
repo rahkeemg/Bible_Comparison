@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import dash
 import dash_core_components as dcc
+import dash_bootstrap_components as dbc
 import dash_html_components as html
 import dash_table
-import plotly.graph_objects as go
 import file_reader as fr
 import json
 import string
@@ -54,42 +54,54 @@ external_scripts = [
 
     ## JQuery first, then Popper.js, then Bootstrap JS ##
     {
-        'src': 'https://code.jquery.com/jquery-3.3.1.slim.min.js',
-        'integrity': 'sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo',
-        'crossorigin': 'anonymous'
+        "src": "https://code.jquery.com/jquery-3.5.1.slim.min.js",
+        "integrity": "sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj",
+        "crossorigin": "anonymous"
     },
-    'https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js',
-    'https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js',
-    'https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js',
-    'https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js',
     {
-        'src': "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js",
-        'integrity': 'sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49',
-        'crossorigin': 'anonymous'
+        "src": "https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js",
+        "integrity": "sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN",
+        "crossorigin": "anonymous"
     },
-    # 'https://code.jquery.com/jquery-3.3.1.js',
-    # './other/custom-script.js',
     {
-        'src': 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js',
-        'integrity': 'sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy',
-        'crossorigin': 'anonymous'
-    },
-    './other/custom-script.js',
+        "src": "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js",
+        "integrity": "sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV",
+        "crossorigin": "anonymous"
+    }
 
+
+    ## JQuery first, then Popper.js, then Bootstrap JS ##
+    # {
+    #     'src': 'https://code.jquery.com/jquery-3.3.1.slim.min.js',
+    #     'integrity': 'sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo',
+    #     'crossorigin': 'anonymous'
+    # },
+    # 'https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js',
+    # 'https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js',
+    # 'https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js',
+    # 'https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js',
+    # {
+    #     'src': "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js",
+    #     'integrity': 'sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49',
+    #     'crossorigin': 'anonymous'
+    # },
+    # # 'https://code.jquery.com/jquery-3.3.1.js',
+    # # './other/custom-script.js',
+    # {
+    #     'src': 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js',
+    #     'integrity': 'sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy',
+    #     'crossorigin': 'anonymous'
+    # },
+    # './other/custom-script.js',
 ]
 
 # external CSS stylesheets for Bootstrap v4.4.1
 external_stylesheets = [
-    {
-        'rel': 'stylesheet',
-        'href': 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
-        'integrity': 'sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO',
-        'crossorigin': 'anonymous'
-    },
-    'https://codepen.io/chriddyp/pen/bWLwgP.css',
-    'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css',
-    'https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css',
-    'https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css'
+    dbc.themes.BOOTSTRAP
+    # 'https://codepen.io/chriddyp/pen/bWLwgP.css',
+    # 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css',
+    # 'https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css',
+    # 'https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css'
 ]
 
 # meta-tags for bootstrap to work as intended
@@ -152,6 +164,8 @@ app.layout = html.Div([
 
     # Dropdown selections and Word Cloud display
     html.Div([
+
+        # Row container for button and image
         html.Div([
 
             # Dropdown selections for books and versions
@@ -163,7 +177,8 @@ app.layout = html.Div([
                 html.H4('Version'),
                 mhf.generate_dropdown(
                     list_of_options=version_list, id='version-select'),
-                mhf.generate_button()
+                dbc.Button(children="Submit", id='submit-button-1',
+                           color="primary", size="lg", block=True)
             ], className='col-sm'),
 
             # Word cloud container for display
@@ -171,10 +186,10 @@ app.layout = html.Div([
                 children=[
                     dcc.Graph(id='word-cloud-grph')
                 ],
-                className='col-8',
+                className='col-md-4 col-lg-8',
                 id='word-cloud-div'
             )
-        ], className='row')
+        ], className='row'),
     ], className='container-fluid'),
 
     # Page divider
@@ -199,7 +214,8 @@ app.layout = html.Div([
     # Page divider
     html.Hr()
 
-], className='container-fluid')
+], className='container')
+
 
 @app.callback(Output('tabs-content-inline', 'children'),
               [Input('tabs-styled-with-inline', 'value'), Input('metric-radio-options', 'value')])
@@ -212,10 +228,11 @@ def render_tab_content(tab, metric_options):
     ])
 
 
-@app.callback(Output('word-cloud-grph', 'figure'),
-              [Input('submit-button', 'n_clicks')],
-              [State('book-select', 'value'), State('version-select', 'value')]
-              )
+@app.callback(
+    Output('word-cloud-grph', 'figure'),
+    [Input('submit-button-1', 'n_clicks')],
+    [State('book-select', 'value'), State('version-select', 'value')]
+)
 def update_wordcloud(n_clicks, book_select, version_select):
 
     if not book_select or not version_select:
